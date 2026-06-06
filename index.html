@@ -1,0 +1,173 @@
+<!doctype html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>XATIN FASHION -  خاتين فاشيون ژبو فروتنا جلوبەرگێن ئاڤرەتا</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            background: #fafafa;
+            color: #111;
+            padding: 1rem;
+        }
+
+        /* باکگراوندێ سەرەکی یێ خەمەریێ تاری */
+        .header {
+            text-align: center;
+            padding: 2.5rem 1rem;
+            background: #2d141c; /* ڕەنگێ خەمەریێ تاری */
+            border-radius: 16px;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            position: relative;
+        }
+
+            .header h1 {
+                margin: 0;
+                color: #fff;
+                font-size: 2.5rem;
+                font-weight: 900;
+                letter-spacing: 2px;
+            }
+
+            .header p {
+                margin: 8px 0 0 0;
+                color: #ffcbd5;
+                font-size: 14px;
+                font-weight: bold;
+            }
+
+        /* ستایلێ هێمایێن سۆشیال میدیایێ */
+        .social-icons {
+            margin-top: 15px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+            .social-icons a {
+                color: #ffcbd5;
+                font-size: 1.5rem; /* مەزنکرنا ئایکۆنان بۆ دیاربوونێ */
+                transition: color 0.2s, transform 0.2s;
+                text-decoration: none;
+            }
+
+                /* گۆڕینا ڕەنگی دەما ماوس دەچێتە سەر ئایکۆنان */
+                .social-icons a:hover {
+                    color: #fff;
+                    transform: scale(1.2);
+                }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            max-width: 1050px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.25rem;
+            box-shadow: 0 6px 16px rgba(0,0,0,0.04);
+            text-align: center;
+            border: 1px solid #f0f0f0;
+            transition: transform 0.2s ease;
+        }
+
+            .product-card:hover {
+                transform: translateY(-4px);
+            }
+
+            .product-card img {
+                width: 100%;
+                height: 380px;
+                object-fit: cover;
+                border-radius: 12px;
+            }
+
+            .product-card h3 {
+                font-size: 1.15rem;
+                margin: 0.75rem 0 0.5rem 0;
+                color: #2d141c;
+                font-weight: 800;
+            }
+
+            .product-card .price {
+                color: #e0385a;
+                font-weight: 800;
+                font-size: 1.25rem;
+                margin-bottom: 12px;
+            }
+
+        .btn {
+            display: block;
+            width: 100%;
+            background: #2d141c;
+            color: white;
+            text-decoration: none;
+            padding: 11px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+            font-size: 14px;
+            border: none;
+            transition: background 0.2s;
+        }
+
+            .btn:hover {
+                background: #e0385a;
+            }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>XATIN FASHION</h1>
+        <p>  خاتين فاشيون ژبو فروتنا جلوبەرگێن ئاڤرەتا </p>
+
+        <div class="social-icons">
+            <a href="https://www.instagram.com/xatin_fashion?igsh=bHF4ZzB1eWN5a3pt" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+
+            <a href="https://www.tiktok.com/@xatin_fashion?_r=1&_t=ZS-96zLcjT1ioW" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
+
+            <a href="https://www.snapchat.com/add/xatin_fashion" target="_blank" title="Snapchat"><i class="fab fa-snapchat"></i></a>
+        </div>
+    </div>
+
+    <div class="products-grid" id="shop-products"></div>
+
+    <script>
+        const productsContainer = document.getElementById('shop-products');
+        let totalProducts = 56;
+        let defaultPrice = "20,000";
+
+        for (let i = 1; i <= totalProducts; i++) {
+
+        if (i === 8 || i === 42) {
+        continue;
+        }
+
+        const card = `
+        <div class="product-card">
+        <img src="images/${i}.jpg" alt="جلوبەرگێن کچان #${i}">
+        <h3>قوماش كشمير #${i}</h3>
+        <div class="price">${defaultPrice} IQD</div>
+        <a href="product.html?id=${i}&price=${defaultPrice}" class="btn"> داخوازکرن</a>
+        </div>
+        `;
+        productsContainer.innerHTML += card;
+        }
+    </script>
+
+</body>
+</html>

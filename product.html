@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="ku" dir="rtl">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>داخوازکرنا بەرهەمی - XATIN FASHION</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+            margin: 0;
+            background: #fafafa;
+            color: #111;
+            padding: 1rem;
+        }
+
+        .product-container {
+            max-width: 500px;
+            margin: 1.5rem auto;
+            background: white;
+            border-radius: 16px;
+            padding: 1.25rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .main-img {
+            width: 100%;
+            max-height: 400px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1rem;
+        }
+
+        .title {
+            font-size: 1.3rem;
+            color: #3b2029;
+            margin: 0 0 0.25rem 0;
+            font-weight: 900;
+        }
+
+        .price {
+            font-size: 1.2rem;
+            color: #e0385a;
+            font-weight: 800;
+            margin: 0 0 1rem 0;
+        }
+
+        .order-form {
+            background: #fff5f7;
+            padding: 1rem;
+            border-radius: 12px;
+            border: 1px dashed #ffcbd5;
+            text-align: right;
+        }
+
+            .order-form h3 {
+                margin: 0 0 0.75rem 0;
+                font-size: 14px;
+                color: #7a3a46;
+                text-align: center;
+                font-weight: bold;
+            }
+
+            .order-form label {
+                display: block;
+                margin-bottom: 4px;
+                font-size: 12px;
+                color: #555;
+                font-weight: bold;
+            }
+
+            .order-form input, .order-form select {
+                width: 100%;
+                padding: 8px;
+                margin-bottom: 10px;
+                border: 1px solid #e2b3bc;
+                border-radius: 8px;
+                font-size: 13px;
+                text-align: right;
+                background: #fff;
+            }
+
+        /* ستایلێ نوو بۆ بەشێ زێدەکرنا ژمارێ ب بێ تێکدانا دێزاینێ سەرەکی */
+        .quantity-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: #fff;
+            border: 1px solid #e2b3bc;
+            border-radius: 8px;
+            padding: 6px 12px;
+            margin-bottom: 10px;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .quantity-btn {
+            background: #2d141c;
+            color: white;
+            border: none;
+            font-size: 14px;
+            font-weight: bold;
+            width: 26px;
+            height: 26px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        #quantity-value {
+            font-size: 15px;
+            font-weight: bold;
+            color: #2d141c;
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: #25d366;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+            .submit-btn:hover {
+                background: #128c7e;
+            }
+
+        .back-link {
+            display: inline-block;
+            margin-top: 1rem;
+            color: #7a3a46;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="product-container">
+        <img id="product-image" src="" alt="وێنێ بەرهەمی" class="main-img">
+        <h1 id="product-title" class="title">باربوونا ناڤی...</h1>
+        <p id="product-price" class="price">0 IQD</p>
+
+        <div class="order-form">
+            <h3>💬 داخوازیێ ب ڕێکا واتساپێ بنێره</h3>
+            <form onsubmit="event.preventDefault();">
+
+                <label>ژمارە (دانە):</label>
+                <div class="quantity-wrapper">
+                    <span style="font-size: 13px; color: #555;">چەند دانە تە دڤێن؟</span>
+                    <div class="quantity-control">
+                        <button type="button" class="quantity-btn" onclick="changeQuantity(-1)">-</button>
+                        <span id="quantity-value">1</span>
+                        <button type="button" class="quantity-btn" onclick="changeQuantity(1)">+</button>
+                    </div>
+                </div>
+
+                <label for="size">قەبارە (Size):</label>
+                <select id="size" required>
+                    <option value="">قەبارەیەکێ هەلبژێره</option>
+                    <option value="S">S</option>
+                    <option value="M">M</option>
+                    <option value="L">L</option>
+                    <option value="XL">XL</option>
+                </select>
+
+                <label for="phone">ژمارا مۆبایلێ تە:</label>
+                <input type="text" id="phone" placeholder="ژمارا مۆبایلا خۆ بنڤێسه" required>
+
+                <label for="address">ناڤونیشانێ تە:</label>
+                <input type="text" id="address" placeholder="باژار یان گەڕەک" required>
+
+                <button type="button" class="submit-btn" onclick="sendToWhatsApp()">پەسندکرنا داخوازیێ د واتساپێ دا</button>
+            </form>
+        </div>
+
+        <a href="index.html" class="back-link">← زڤڕین بۆ پەیجێ سەرەکی</a>
+    </div>
+
+    <script>
+        const urlParams = new URLSearchParams(window.location.search);
+        const prodId = urlParams.get('id');
+        const prodPrice = urlParams.get('price');
+
+        if (prodId) {
+        document.getElementById('product-image').src = "images/" + prodId + ".jpg";
+        document.getElementById('product-title').innerText = "قوماش كشمير #" + prodId;
+        if (prodPrice) {
+        document.getElementById('product-price').innerText = prodPrice + " IQD";
+        }
+        }
+
+        // لۆجیکێ گۆڕینا ژمارا جلان
+        let currentQuantity = 1;
+        function changeQuantity(amount) {
+        currentQuantity += amount;
+        if (currentQuantity < 1) currentQuantity = 1;
+        document.getElementById('quantity-value').innerText = currentQuantity;
+        }
+
+        // فەنکشنا ڕەوانەکرنا داخوازیێ بۆ واتسئاپێ
+        function sendToWhatsApp() {
+        const itemName = document.getElementById('product-title').innerText;
+        const itemPrice = document.getElementById('product-price').innerText;
+        const size = document.getElementById('size').value;
+        const phone = document.getElementById('phone').value;
+        const address = document.getElementById('address').value;
+
+        if(!size || !phone || !address) {
+        alert("تکایه هه می خانه یان پر بکه پێش ناردنێ!");
+        return;
+        }
+
+        const myPhoneNumber = "9647503730741";
+
+        // زێدەکرنا ژمارا جلان بۆ ناڤ پەیاما واتسئاپێ
+        const text = "🌸 داخوازیەکا نوو ژ وێبسایتی (XATIN FASHION) 🌸\n\n" +
+        "👗 بەرهەم: " + itemName + "\n" +
+        "💰 بها: " + itemPrice + "\n" +
+        "📦 ژمارە: " + currentQuantity + " دانە\n" +
+        "📐 قەباره (Size): " + size + "\n" +
+        "📱 مۆبایلا کڕیاری: " + phone + "\n" +
+        "📍 ناونیشان: " + address;
+
+        const whatsappURL = "https://wa.me/" + myPhoneNumber + "?text=" + encodeURIComponent(text);
+        window.open(whatsappURL, '_blank');
+        }
+    </script>
+
+</body>
+</html>
