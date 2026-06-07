@@ -15,7 +15,8 @@
             margin: 0;
             background: #fafafa;
             color: #111;
-            padding: 1rem;
+            /* کێمکرنا پازنا گشتی دا کو کارتێن لێواران مەزنتر بن */
+            padding: 0.5rem; 
         }
 
         /* باکگراوندێ سەرەکی یێ خەمەریێ تاری */
@@ -24,7 +25,7 @@
             padding: 2.5rem 1rem;
             background: #2d141c; /* ڕەنگێ خەمەریێ تاری */
             border-radius: 16px;
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem; /* کێمکرنا بۆشایییا ژ خوارێ */
             box-shadow: 0 4px 12px rgba(0,0,0,0.1);
             position: relative;
         }
@@ -67,17 +68,18 @@
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+            grid-template-columns: repeat(2, 1fr); /* ڕاگرتنا دوو ستوونان بۆ مۆبایلێ */
+            gap: 8px; /* کێمکرنا ناڤبەران دا وێنە مەزنتر بن */
             max-width: 1050px;
             margin: 0 auto;
-            padding: 0 1rem;
+            /* لادانا بۆشاییێن لایان دا کارتە لێواران نێزیک بن */
+            padding: 0; 
         }
 
         .product-card {
             background: white;
-            border-radius: 16px;
-            padding: 1.25rem;
+            border-radius: 12px; /* بچووککرنا ڕادیۆسا لێواران کێمەک */
+            padding: 0.75rem; /* کێمکرنا پازنا ناڤین دا وێنە جهەکێ زێدەتر بگریت */
             box-shadow: 0 6px 16px rgba(0,0,0,0.04);
             text-align: center;
             border: 1px solid #f0f0f0;
@@ -92,21 +94,30 @@
                 width: 100%;
                 aspect-ratio: 1 / 1;
                 object-fit: cover;
-                border-radius: 12px;
+                border-radius: 8px; /* بچووککرنا ڕادیۆسا وێنەی */
             }
 
             .product-card h3 {
-                font-size: 1.15rem;
-                margin: 0.75rem 0 0.5rem 0;
+                /* کێمکرنا نڤیسینا سەرەکی "قوماش کشمیر" */
+                font-size: 0.9rem; 
+                margin: 0.5rem 0 0.25rem 0;
                 color: #2d141c;
-                font-weight: 800;
+                font-weight: 700;
+                line-height: 1.2;
+            }
+
+            /* ستایلێ نوو بۆ بچووککرنا ژمارەیا ل تەنیشت نڤیسینێ */
+            .product-card h3 span.prod-num {
+                font-size: 0.7rem; /* بچووکتر ژ نڤیسینێ */
+                font-weight: 400;
+                color: #555;
             }
 
             .product-card .price {
                 color: #e0385a;
                 font-weight: 800;
-                font-size: 1.25rem;
-                margin-bottom: 12px;
+                font-size: 1.1rem; /* بچووککرنا بهای کێمەک */
+                margin-bottom: 10px;
             }
 
         .btn {
@@ -115,11 +126,11 @@
             background: #2d141c;
             color: white;
             text-decoration: none;
-            padding: 11px;
+            padding: 9px; /* کێمکرنا پازنا دوگمەی کێمەک */
             border-radius: 8px;
             font-weight: bold;
             text-align: center;
-            font-size: 14px;
+            font-size: 13px; /* کێمکرنا نڤیسینا دوگمەی */
             border: none;
             transition: background 0.2s;
         }
@@ -133,7 +144,7 @@
 
     <div class="header">
         <h1>XATIN FASHION</h1>
-        <p>  خاتين فاشيون ژبو فروتنا جلوبەرگێن ئاڤرەتا </p>
+        <p>خاتين فاشيون ژبو فروتنا جلوبەرگێن ئاڤرەتا</p>
 
         <div class="social-icons">
             <a href="https://www.instagram.com/xatin_fashion?igsh=bHF4ZzB1eWN5a3pt" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
@@ -155,7 +166,6 @@
         4: "18,000",
         15: "30,000",
         5: "30,000",
-
         // هەر ژمارەکا دی ل ڤێرێ زێدە بکە ب ڤی شێوازی
         };
 
@@ -169,7 +179,7 @@
         const card = `
         <div class="product-card">
         <img src="images/${i}.jpg" alt="جلوبەرگێن کچان #${i}">
-        <h3>قوماش كشمير #${i}</h3>
+        <h3>قوماش كشمير <span class="prod-num">#${i}</span></h3>
         <div class="price">${currentPrice} IQD</div>
         <a href="product.html?id=${i}&price=${currentPrice}" class="btn"> داخوازکرن</a>
         </div>
