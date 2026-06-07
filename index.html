@@ -90,7 +90,7 @@
 
             .product-card img {
                 width: 100%;
-                height: 380px;
+                aspect-ratio: 1 / 1;
                 object-fit: cover;
                 border-radius: 12px;
             }
@@ -137,9 +137,7 @@
 
         <div class="social-icons">
             <a href="https://www.instagram.com/xatin_fashion?igsh=bHF4ZzB1eWN5a3pt" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
-
             <a href="https://www.tiktok.com/@xatin_fashion?_r=1&_t=ZS-96zLcjT1ioW" target="_blank" title="TikTok"><i class="fab fa-tiktok"></i></a>
-
             <a href="https://www.snapchat.com/add/xatin_fashion" target="_blank" title="Snapchat"><i class="fab fa-snapchat"></i></a>
         </div>
     </div>
@@ -149,20 +147,31 @@
     <script>
         const productsContainer = document.getElementById('shop-products');
         let totalProducts = 56;
-        let defaultPrice = "20,000";
+
+        // ل ڤێرێ تەنها ئەو ژماران بنڤیسە یێن کو بهایێ وان نە 20,000 یە
+        const specialPrices = {
+        1: "25,000",
+        2: "25,000",
+        4: "18,000",
+        15: "30,000",
+        5: "30,000",
+
+        // هەر ژمارەکا دی ل ڤێرێ زێدە بکە ب ڤی شێوازی
+        };
 
         for (let i = 1; i <= totalProducts; i++) {
-
         if (i === 8 || i === 42) {
         continue;
         }
+
+        let currentPrice = specialPrices[i] ? specialPrices[i] : "20,000";
 
         const card = `
         <div class="product-card">
         <img src="images/${i}.jpg" alt="جلوبەرگێن کچان #${i}">
         <h3>قوماش كشمير #${i}</h3>
-        <div class="price">${defaultPrice} IQD</div>
-        <a href="product.html?id=${i}&price=${defaultPrice}" class="btn"> داخوازکرن</a>
+        <div class="price">${currentPrice} IQD</div>
+        <a href="product.html?id=${i}&price=${currentPrice}" class="btn"> داخوازکرن</a>
         </div>
         `;
         productsContainer.innerHTML += card;
