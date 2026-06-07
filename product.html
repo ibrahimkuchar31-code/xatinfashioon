@@ -143,6 +143,26 @@
                 background: #128c7e;
             }
 
+            /* ستایل بۆ کاتێ دوگمە بلۆک دبیت */
+            .submit-btn:disabled {
+                background: #bbb !important;
+                cursor: not-allowed;
+            }
+
+        /* ستایل بۆ نامەیا ئاگەهداریا نەمانا سایزی */
+        .out-of-stock-msg {
+            display: none;
+            background: #fff;
+            color: #e0385a;
+            border: 1px solid #e0385a;
+            padding: 8px;
+            border-radius: 8px;
+            font-size: 12px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
         .back-link {
             display: inline-block;
             margin-top: 1rem;
@@ -164,9 +184,11 @@
             <h3>💬 داخوازیێ ب ڕێکا واتساپێ بنێره</h3>
             <form onsubmit="event.preventDefault();">
 
+                <div id="stock-warning" class="out-of-stock-msg">ببوورە، ئەڤ سایزە بۆ ڤی کڕاسی یێ خڵاسبوویە!</div>
+
                 <label>ژمارە (دانە):</label>
                 <div class="quantity-wrapper">
-                    <span style="font-size: 13px; color: #555;">چەند دانە تە دڤێن؟</span>
+                    <span style="font-size: 13px; color: #555;">چەند دانە تە دڤێن?</span>
                     <div class="quantity-control">
                         <button type="button" class="quantity-btn" onclick="changeQuantity(-1)">-</button>
                         <span id="quantity-value">1</span>
@@ -175,12 +197,12 @@
                 </div>
 
                 <label for="size">قەبارە (Size):</label>
-                <select id="size" required>
+                <select id="size" onchange="checkStockAvailability()" required>
                     <option value="">قەبارەیەکێ هەلبژێره</option>
-                    <option value="S">S</option>
                     <option value="M">M</option>
                     <option value="L">L</option>
                     <option value="XL">XL</option>
+                    <option value="XXL">XXL</option>
                 </select>
 
                 <label for="phone">ژمارا مۆبایلێ تە:</label>
@@ -189,7 +211,7 @@
                 <label for="address">ناڤونیشانێ تە:</label>
                 <input type="text" id="address" placeholder="باژار یان گەڕەک" required>
 
-                <button type="button" class="submit-btn" onclick="sendToWhatsApp()">پەسندکرنا داخوازیێ د واتساپێ دا</button>
+                <button type="button" id="whatsapp-btn" class="submit-btn" onclick="sendToWhatsApp()">پەسندکرنا داخوازیێ د واتساپێ دا</button>
             </form>
         </div>
 
@@ -201,11 +223,36 @@
         const prodId = urlParams.get('id');
         const prodPrice = urlParams.get('price');
 
+        // ١. داتا ڕێکخستنا بەرهەمێن خڵاسبووی
+        // ل ڤێرێ مە دیار کر کو کڕاسێ ژمارە 1 سایزێ XL یێ خڵاسبوویە
+        const outOfStockData = {
+        "1": ["XL"],
+        "2": ["L", "XL"],
+        // ئەگەر پاشەڕۆژێ هەر کڕاسەکێ دی نەما، هۆسا ل خوارێ زێدە بکە:
+        // , "5": ["M", "L"]
+        };
+
         if (prodId) {
         document.getElementById('product-image').src = "images/" + prodId + ".jpg";
         document.getElementById('product-title').innerText = "قوماش كشمير #" + prodId;
         if (prodPrice) {
         document.getElementById('product-price').innerText = prodPrice + " IQD";
+        }
+        }
+
+        // فەنکشنا پشکنینا خڵاسبوونا سایزان
+        function checkStockAvailability() {
+        const selectedSize = document.getElementById('size').value;
+        const warningDiv = document.getElementById('stock-warning');
+        const submitBtn = document.getElementById('whatsapp-btn');
+
+        // ئەگەر ئەڤ کڕاسە و ئەو سایزە د لیستا خڵاسبوویان دا بن
+        if (outOfStockData[prodId] && outOfStockData[prodId].includes(selectedSize)) {
+        warningDiv.style.display = "block"; // پەیامێ نیشا بدە
+        submitBtn.disabled = true; // دوگمەی بلۆک بکە
+        } else {
+        warningDiv.style.display = "none"; // پەیامێ ڤەشێره
+        submitBtn.disabled = false; // دوگمەی کارا بکە
         }
         }
 
@@ -226,13 +273,12 @@
         const address = document.getElementById('address').value;
 
         if(!size || !phone || !address) {
-        alert("تکایه هه می خانه یان پر بکه پێش ناردنێ!");
+        alert("تکایه هه می هانه یان پر بکه پێش ناردنێ!");
         return;
         }
 
         const myPhoneNumber = "9647504864006";
 
-        // زێدەکرنا ژمارا جلان بۆ ناڤ پەیاما واتسئاپێ
         const text = "🌸 داخوازیەکا نوو ژ وێبسایتی (XATIN FASHION) 🌸\n\n" +
         "👗 بەرهەم: " + itemName + "\n" +
         "💰 بها: " + itemPrice + "\n" +
